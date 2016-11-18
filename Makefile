@@ -1,5 +1,7 @@
 start-docker:
 	docker-compose up -d
+docker-rebuild:
+	docker-compose up -d --build
 update-dependencies:
 	docker pull jwilder/docker-gen:0.7.3
 	docker pull nginx:1.11.3

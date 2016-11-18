@@ -16,7 +16,6 @@ RUN /usr/local/openresty/luajit/bin/luarocks install lua-resty-jwt
 # Configure Nginx and apply fix for very long server names
 RUN mkdir -p /etc/nginx/conf.d
 RUN mkdir -p /var/log/nginx/
-COPY nginx/nginx.conf /usr/local/openresty/nginx/conf/nginx.conf
 
 # Install Forego
 ADD https://github.com/jwilder/forego/releases/download/v0.16.1/forego /usr/local/bin/forego

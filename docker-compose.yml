@@ -4,6 +4,7 @@ services:
     #image: jwilder/nginx-proxy
     build: .
     container_name: 0-nginx-proxy
+    image: presspage/0-nginx-proxy
     ports:
       - "80:80"
     volumes:
@@ -17,3 +18,13 @@ services:
     image: schickling/swagger-ui
     environment:
       VIRTUAL_HOST: swagger-ui.presspage.dev
+
+  socat:
+    image: shipyard/docker-proxy
+    container_name: 0-socat
+    ports:
+      - 2376:2375
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    environment:
+      PORT: 2375

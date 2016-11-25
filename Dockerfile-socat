@@ -1,0 +1,6 @@
+FROM shipyard/docker-proxy
+
+RUN apk --update add socat
+
+ENTRYPOINT ["socat"]
+CMD["TCP4-LISTEN:2375,fork,reuseaddr", "UNIX-CONNECT:/var/run/docker.sock"]

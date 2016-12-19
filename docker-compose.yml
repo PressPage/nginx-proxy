@@ -20,6 +20,16 @@ services:
     environment:
       VIRTUAL_HOST: swagger-ui.presspage.dev
 
+  swagger-generator:
+    container_name: 0-swagger-generator
+    image: swaggerapi/swagger-generator
+
+  swagger-codegen-cli:
+    container_name: 0-swagger-codegen-cli
+    image: jimschubert/swagger-codegen-cli
+    volumes:
+      - "./swagger-out:/swagger-api/out"
+
   socat:
     image: shipyard/docker-proxy
     container_name: 0-socat

@@ -279,7 +279,7 @@ upstream {{ $location }}-fpm {
 server {
 	server_name {{ $host }};
 	listen 80 {{ $default_server }};
-	access_log /var/log/nginx/access.log vhost;
+	access_log /var/log/nginx/access.log timed_combined;
 	root /app/public;
 
 	{{ range $location, $containers3 := groupByMulti $containers "Env.FPM_HOST" "," }}

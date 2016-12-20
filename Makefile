@@ -1,4 +1,6 @@
 start-docker:
+	mkdir -p nginx/lua
+	mkdir -p nginx/vhost
 	sudo ifconfig lo0 alias 172.16.123.1 #http://stackoverflow.com/a/624660
 	docker-compose up -d
 docker-rebuild:

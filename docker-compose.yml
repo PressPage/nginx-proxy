@@ -1,5 +1,16 @@
 version: '2'
 services:
+  dnsmasq:
+    image: andyshinn/dnsmasq
+    container_name: 0-dnsmasq
+    restart: always
+    cap_add:
+      - NET_ADMIN
+    ports:
+      - 53:53/tcp
+      - 53:53/udp
+    command: --address=/dev/172.16.123.1
+
   nginx-proxy:
     #image: jwilder/nginx-proxy
     build: .

@@ -1,15 +1,19 @@
 version: '2'
 services:
   dnsmasq:
-    image: andyshinn/dnsmasq
+    image: jpillora/dnsmasq
     container_name: 0-dnsmasq
     restart: always
     cap_add:
       - NET_ADMIN
     ports:
-      - 53:53/tcp
+      - 5380:8080/tcp
       - 53:53/udp
-    command: --address=/dev/172.16.123.1
+    environment:
+      USER: foo
+      PASS: bar
+    volumes:
+      - "./dnsmasq.conf:/etc/dnsmasq.conf"
 
   nginx-proxy:
     #image: jwilder/nginx-proxy
@@ -42,17 +46,17 @@ services:
       PORT: 2375
 
 #  Please keep it here!
-#  mysql:
-#    image: mysql
-#    container_name: 0-mysql
-#    ports:
-#      - 3305:3306
-#    volumes:
-#      - ".data:/var/lib/mysql"
-#    restart: always
-#    environment:
-#      MYSQL_ROOT_PASSWORD: mm1234
-#      MYSQL_DATABASE: presspage_database
+  mysql:
+    image: mysql
+    container_name: 0-mysql
+    ports:
+      - 3305:3306
+    volumes:
+      - ".data:/var/lib/mysql"
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: mm1234
+      MYSQL_DATABASE: presspage_database
 
 networks:
   default:

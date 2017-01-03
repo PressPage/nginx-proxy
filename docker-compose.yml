@@ -22,12 +22,14 @@ services:
     image: presspage/0-nginx-proxy
     ports:
       - "80:80"
+      - "443:443"
     volumes:
       - ".:/app/"
       - "/var/run/docker.sock:/tmp/docker.sock:ro"
       - "./nginx/vhost:/etc/nginx/vhost.d"
       - "./nginx/lua:/usr/local/openresty/nginx/lua"
       - "./nginx/nginx.conf:/usr/local/openresty/nginx/conf/nginx.conf"
+      - "./nginx/certs:/etc/nginx/certs"
 
   swagger-ui:
     container_name: 0-swagger-ui

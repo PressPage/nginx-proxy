@@ -325,11 +325,11 @@ server {
 
 	{{ range $location, $containers3 := groupByMulti $containers "Env.FPM_HOST" "," }}
 	location /{{ $location }}/ {
-		add_header 'Access-Control-Allow-Origin' '*';
-		add_header 'Access-Control-Allow-Methods' 'GET, POST, PUT, PATCH, DELETE, OPTIONS';
-		# Custom headers and headers various browsers *should* be OK with but aren't
-		add_header 'Access-Control-Allow-Headers' 'DNT,X-CustomHeader,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,FINGER-PRINT,X-AUTH-TOKEN';
 		if ($request_method = 'OPTIONS') {
+			add_header 'Access-Control-Allow-Origin' '*';
+			add_header 'Access-Control-Allow-Methods' 'GET, POST, PUT, PATCH, DELETE, OPTIONS';
+			# Custom headers and headers various browsers *should* be OK with but aren't
+			add_header 'Access-Control-Allow-Headers' 'DNT,X-CustomHeader,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,FINGER-PRINT,X-AUTH-TOKEN';
 			# Tell client that this pre-flight info is valid for 20 days
 			add_header 'Access-Control-Max-Age' 1728000;
 			add_header 'Content-Type' 'text/plain charset=UTF-8';
@@ -353,6 +353,10 @@ server {
 		{{ else if (exists "/etc/nginx/vhost.d/default_location") }}
 		include /etc/nginx/vhost.d/default_location;
 		{{ end }}
+		add_header 'Access-Control-Allow-Origin' '*';
+		add_header 'Access-Control-Allow-Methods' 'GET, POST, PUT, PATCH, DELETE, OPTIONS';
+		# Custom headers and headers various browsers *should* be OK with but aren't
+		add_header 'Access-Control-Allow-Headers' 'DNT,X-CustomHeader,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,FINGER-PRINT,X-AUTH-TOKEN';
 	}
 	{{ end }}
 }

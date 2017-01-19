@@ -29,7 +29,6 @@ services:
       - "./nginx/vhost:/etc/nginx/vhost.d"
       - "./nginx/lua:/usr/local/openresty/nginx/lua"
       - "./nginx/nginx.conf:/usr/local/openresty/nginx/conf/nginx.conf"
-      - "./nginx/certs:/etc/nginx/certs"
 
   swagger-ui:
     container_name: 0-swagger-ui
@@ -46,6 +45,14 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
     environment:
       PORT: 2375
+  fake-s3:
+    image: lphoward/fake-s3
+    container_name: 0-fake-s3
+    volumes:
+      - ./.content:/fakes3_root
+    environment:
+      VIRTUAL_HOST: "content.presspage.dev"
+      VIRTUAL_PORT: 4569
 
 #  Please keep it here!
 #  mysql:

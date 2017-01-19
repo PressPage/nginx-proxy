@@ -31,7 +31,9 @@ WORKDIR /app/
 
 ENV DOCKER_HOST unix:///tmp/docker.sock
 
-VOLUME ["/etc/nginx/certs"]
+ADD certs.sh /app
+RUN sh /app/certs.sh api.presspage.dev
+RUN sh /app/certs.sh content.presspage.dev
 
 ENTRYPOINT ["/app/docker-entrypoint.sh"]
 CMD ["forego", "start", "-r"]

@@ -1,0 +1,5 @@
+location @dynamiccycletour {
+        #proxy_pass http://content.presspage.com$uri;
+        rewrite ^ http://content.presspage.com$request_uri? permanent;
+}
+client_max_body_size 100m;

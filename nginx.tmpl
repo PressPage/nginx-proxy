@@ -332,6 +332,9 @@ server {
 	add_header Strict-Transport-Security "max-age=31536000";
 
 	{{ range $location, $containers3 := groupByMulti $containers "Env.FPM_HOST" "," }}
+	{{ if (exists (printf "/etc/nginx/vhost.d/%s.presspage.dev" $location)) }}
+	include {{ printf "/etc/nginx/vhost.d/%s.presspage.dev" $location }};
+	{{ end }}
 	location /{{ $location }}/ {
 		if ($request_method = 'OPTIONS') {
 			add_header 'Access-Control-Allow-Origin' '*';

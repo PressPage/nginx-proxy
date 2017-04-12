@@ -1,3 +1,1 @@
-proxy_intercept_errors on;
-recursive_error_pages on;
-error_page 404 = @dynamiccycletour;
+try_files $uri $uri/ @test;

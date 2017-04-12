@@ -11,7 +11,7 @@ RUN apt-get update \
 
 RUN /usr/local/openresty/luajit/bin/luarocks install date
 RUN /usr/local/openresty/luajit/bin/luarocks install lua-resty-http
-RUN /usr/local/openresty/luajit/bin/luarocks install lua-resty-jwt
+RUN /usr/local/openresty/luajit/bin/luarocks install lua-resty-jwt 0.1.9
 
 # Configure Nginx and apply fix for very long server names
 RUN mkdir -p /etc/nginx/conf.d
@@ -34,6 +34,7 @@ ENV DOCKER_HOST unix:///tmp/docker.sock
 ADD certs.sh /app
 RUN sh /app/certs.sh api.presspage.dev
 RUN sh /app/certs.sh content.presspage.dev
+RUN sh /app/certs.sh manager.presspage.dev
 
 ENTRYPOINT ["/app/docker-entrypoint.sh"]
 CMD ["forego", "start", "-r"]

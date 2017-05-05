@@ -54,6 +54,15 @@ services:
       VIRTUAL_HOST: "content.presspage.dev"
       VIRTUAL_PORT: 4569
 
+  fake-sqs:
+    image: pakohan/elasticmq
+    container_name: 0-fake-sqs
+    command: ["java", "-jar", "elasticmq-server-0.8.5.jar"]
+    environment:
+      VIRTUAL_HOST: "sqs.presspage.dev"
+      VIRTUAL_PORT: 9324
+
+
 #  Please keep it here!
   mysql:
     image: mysql

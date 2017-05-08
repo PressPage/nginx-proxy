@@ -65,7 +65,7 @@ services:
 
 #  Please keep it here!
   mysql:
-    image: mysql
+    image: mysql:5.6
     container_name: 0-mysql
     ports:
       - 3305:3306

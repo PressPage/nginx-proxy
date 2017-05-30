@@ -1,10 +1,12 @@
-location @test {
-    rewrite ^(.*)$ /test$1 break;
-    error_page 404 = @dynamiccycletour;
-}
-
 location @dynamiccycletour {
         #proxy_pass http://content.presspage.com$uri;
-        rewrite ^/test/(.*)$ http://content.presspage.com/$1 break;
+        rewrite ^ http://content.presspage.dev/test$request_uri? permanent;
+        proxy_intercept_errors on;
+        recursive_error_pages on;
+        error_page 404 = @dynamiccycletour2;
+}
+location @dynamiccycletour2 {
+        #proxy_pass http://content.presspage.com$uri;
+        rewrite ^ http://content.presspage.com$request_uri? permanent;
 }
 client_max_body_size 100m;

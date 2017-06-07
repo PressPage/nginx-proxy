@@ -55,12 +55,13 @@ services:
       VIRTUAL_PORT: 4569
 
   fake-sqs:
-    image: pakohan/elasticmq
+    image: feathj/fake-sqs
     container_name: 0-fake-sqs
-    command: ["java", "-jar", "elasticmq-server-0.8.5.jar"]
+    ports:
+      - 9494:9494
     environment:
       VIRTUAL_HOST: "sqs.presspage.dev"
-      VIRTUAL_PORT: 9324
+      #VIRTUAL_PORT: 9494
 
 
 #  Please keep it here!

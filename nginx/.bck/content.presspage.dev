@@ -1,6 +1,6 @@
 location @dynamiccycletour {
         #proxy_pass http://content.presspage.com$uri;
-        rewrite ^ http://content.presspage.dev/test$request_uri? permanent;
+        rewrite ^ http://content.presspage.localhost/test$request_uri? permanent;
         proxy_intercept_errors on;
         recursive_error_pages on;
         error_page 404 = @dynamiccycletour2;

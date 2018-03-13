@@ -67,17 +67,17 @@ services:
 
 
 #  Please keep it here!
-  mysql:
-    image: mysql:5.6
-    container_name: 0-mysql
-    ports:
-      - 3305:3306
-    volumes:
-      - ".data:/var/lib/mysql"
-    restart: always
-    environment:
-      MYSQL_ROOT_PASSWORD: mm1234
-      MYSQL_DATABASE: presspage_database
+#  mysql:
+#    image: mysql:5.6
+#    container_name: 0-mysql
+#    ports:
+#      - 3305:3306
+#    volumes:
+#      - ".data:/var/lib/mysql"
+#    restart: always
+#    environment:
+#      MYSQL_ROOT_PASSWORD: mm1234
+#      MYSQL_DATABASE: presspage_database
 
 networks:
   default:

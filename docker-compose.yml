@@ -50,9 +50,19 @@ services:
     container_name: 0-fake-s3
     volumes:
       - ./.content:/fakes3_root
+    ports:
+      - 4569:4569
     environment:
       VIRTUAL_HOST: "content.presspage.localhost"
       VIRTUAL_PORT: 4569
+
+  fake-sqs:
+    image: feathj/fake-sqs
+    container_name: 0-fake-sqs
+    ports:
+      - 9494:9494
+    environment:
+      VIRTUAL_HOST: "sqs.presspage.localhost"
 
 #  Please keep it here!
 #  mysql:
